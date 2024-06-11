@@ -21,12 +21,12 @@
       </Label>
       <AnchorPane layoutY="121.0" prefHeight="278.0" prefWidth="600.0" style="-fx-background-color: fafafa;">
          <children>
-            <TextField layoutX="186.0" layoutY="78.0" prefHeight="26.0" prefWidth="228.0" promptText="Логин">
+            <TextField fx:id="login_field" layoutX="186.0" layoutY="78.0" prefHeight="26.0" prefWidth="228.0" promptText="Логин">
                <font>
                   <Font name="Arial" size="16.0" />
                </font>
             </TextField>
-            <PasswordField layoutX="186.0" layoutY="139.0" prefHeight="26.0" prefWidth="228.0" promptText="Пароль">
+            <PasswordField fx:id="password_field" layoutX="186.0" layoutY="139.0" prefHeight="26.0" prefWidth="228.0" promptText="Пароль">
                <font>
                   <Font name="Arial" size="16.0" />
                </font>
