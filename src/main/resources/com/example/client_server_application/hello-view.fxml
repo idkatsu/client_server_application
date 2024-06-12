@@ -43,5 +43,10 @@
             </Label>
          </children>
       </AnchorPane>
+      <Button fx:id="updatePassword" layoutX="433.0" layoutY="60.0" mnemonicParsing="false" onAction="#switchToSceneUpdatePassword" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: #32CD32;" text="Изменить пароль" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

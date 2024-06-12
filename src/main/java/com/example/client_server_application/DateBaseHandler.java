@@ -38,4 +38,21 @@ public class DateBaseHandler extends Configs {
         resultSet = preparedStatement.executeQuery();
         return resultSet;
     }
+
+    public void changePasswordByUsername(String username, String newPassword) throws SQLException, ClassNotFoundException {
+        String update = "UPDATE " + Const.USERS_TABLE + " SET " + Const.USERS_PASSWORD + "=? WHERE " + Const.USERS_USERNAME + "=?";
+        PreparedStatement preparedStatement = getDbConnection().prepareStatement(update);
+        preparedStatement.setString(1, newPassword);
+        preparedStatement.setString(2, username);
+
+        int rowsAffected = preparedStatement.executeUpdate();
+        if (rowsAffected > 0) {
+            System.out.println("Пароль успешно изменен.");
+        } else {
+            System.out.println("Ошибка: Не удалось изменить пароль. Пользователь с таким логином не найден.");
+        }
+
+    }
+
+
 }

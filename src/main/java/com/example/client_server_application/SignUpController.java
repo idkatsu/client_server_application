@@ -46,11 +46,6 @@ public class SignUpController {
     Connection dbConnection;
 
     public void switchToSceneRegistered(ActionEvent event) throws IOException {
-        if (signUpLastName.getText().isEmpty() || signUpLogin.getText().isEmpty() ||
-                signUpName.getText().isEmpty() || signUpPassword.getText().isEmpty()) {
-            System.out.println("Error");
-            return;
-        }
         Parent root = FXMLLoader.load(getClass().getResource("registered.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -78,6 +73,19 @@ public class SignUpController {
     void initialize() throws IOException {
         signUpButton.setOnAction(event -> {
             try {
+                if (signUpLastName.getText().isEmpty() || signUpLogin.getText().isEmpty() ||
+                        signUpName.getText().isEmpty() || signUpPassword.getText().isEmpty()) {
+                    Shake userLoginAnim = new Shake(signUpLogin);
+                    Shake userPassAnim = new Shake(signUpPassword);
+                    Shake userNameAnim = new Shake(signUpName);
+                    Shake userLastNameAnim = new Shake(signUpLastName);
+
+                    userLoginAnim.playAnim();
+                    userPassAnim.playAnim();
+                    userNameAnim.playAnim();
+                    userLastNameAnim.playAnim();
+                    return;
+                }
                 signUpNewUser();
             } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
