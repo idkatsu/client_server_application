@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DateBaseHandler extends Configs {
+public class DateBaseHandler {
     Connection dbConnection;
 
     public Connection getDbConnection() throws ClassNotFoundException, SQLException {
@@ -19,19 +19,42 @@ public class DateBaseHandler extends Configs {
     // sql запрос
     public void signUpUser(User user)
             throws SQLException, ClassNotFoundException {
-        String insert = "INSERT INTO users (firstName, lastName, userName, password) VALUES (?,?,?,?)";
+        String insert = "INSERT INTO users (userName, password) VALUES (?,?)";
         PreparedStatement preparedStatement = getDbConnection().prepareStatement(insert);
-        preparedStatement.setString(1, user.getFirstName());
-        preparedStatement.setString(2, user.getLastName());
-        preparedStatement.setString(3, user.getUserName());
-        preparedStatement.setString(4, user.getPassword());
+        preparedStatement.setString(1, user.getUserName());
+        preparedStatement.setString(2, user.getPassword());
         preparedStatement.executeUpdate();
     }
 
+    public void addClients(Client client) throws SQLException, ClassNotFoundException {
+        String insert = "INSERT INTO clients (name, passport, address) VALUES (?,?,?)";
+        PreparedStatement preparedStatement = getDbConnection().prepareStatement(insert);
+        preparedStatement.setString(1, client.name);
+        preparedStatement.setString(2, client.passport);
+        preparedStatement.setString(3, client.address);
+        preparedStatement.executeUpdate();
+    }
+
+    public void fetchClientId(String clientName) throws SQLException, ClassNotFoundException {
+        String select = "SELECT id FROM clients WHERE name = ?";
+        PreparedStatement preparedStatement = getDbConnection().prepareStatement(select);
+        preparedStatement.setString(1, clientName);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()) {
+            int clientId = resultSet.getInt("id");
+            SingletonClient.getInstance().setClientId(clientId);
+            SingletonClient.getInstance().setClientId(clientId);
+        } else {
+            System.out.println("Клиент с именем " + clientName + " не найден.");
+        }
+    }
+
+
     public ResultSet getUser(User user) throws SQLException, ClassNotFoundException {
         ResultSet resultSet = null;
-        String select = "SELECT * FROM " + Const.USERS_TABLE + " WHERE " +
-                Const.USERS_USERNAME + "=? AND " + Const.USERS_PASSWORD + "=?"; // =? - какое-то значение
+        String select = "SELECT * FROM " + "users" + " WHERE " +
+                "userName" + "=? AND " + "password" + "=?"; // =? - какое-то значение
         PreparedStatement preparedStatement = getDbConnection().prepareStatement(select);
         preparedStatement.setString(1, user.getUserName());
         preparedStatement.setString(2, user.getPassword());
@@ -41,7 +64,7 @@ public class DateBaseHandler extends Configs {
     }
 
     public void changePasswordByUsername(String username, String newPassword) throws SQLException, ClassNotFoundException {
-        String update = "UPDATE " + Const.USERS_TABLE + " SET " + Const.USERS_PASSWORD + "=? WHERE " + Const.USERS_USERNAME + "=?";
+        String update = "UPDATE " + "users" + " SET " + "password" + "=? WHERE " + "userName" + "=?";
         PreparedStatement preparedStatement = getDbConnection().prepareStatement(update);
         preparedStatement.setString(1, newPassword);
         preparedStatement.setString(2, username);
@@ -94,7 +117,7 @@ public class DateBaseHandler extends Configs {
     public void addRent(Rent rent) throws SQLException, ClassNotFoundException {
         String insert = "INSERT INTO rents (client_id, bicycle_id, shop_id, date_receipt, date_return) VALUES (?,?,?,?,?)";
         PreparedStatement preparedStatement = getDbConnection().prepareStatement(insert);
-        preparedStatement.setString(1, rent.getClient_id());
+        preparedStatement.setInt(1, SingletonClient.getInstance().getClientId());
         preparedStatement.setInt(2, SingletonBicycle.getInstance().getBicycleId());
         preparedStatement.setInt(3, SingletonShop.getInstance().getShopId());
         preparedStatement.setString(4, rent.getDate_receipt());

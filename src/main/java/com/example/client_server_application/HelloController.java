@@ -44,13 +44,6 @@ public class HelloController {
     private TextField str3_2;
     @FXML
     private TextField str3_3;
-    @FXML
-    private Button buttonArenda1;
-    @FXML
-    private Button buttonArenda2;
-    @FXML
-    private Button buttonArenda3;
-    protected String selectedModel;
 
     public void switchToSceneSignUp(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("signUp.fxml"));

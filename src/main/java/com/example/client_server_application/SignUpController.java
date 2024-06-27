@@ -1,10 +1,7 @@
 package com.example.client_server_application;
 
 import java.io.IOException;
-import java.net.URL;
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,15 +16,6 @@ import javafx.stage.Stage;
 public class SignUpController {
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private Button buttonEnter2;
-
-    @FXML
     private Button signUpButton;
 
     @FXML
@@ -40,10 +28,14 @@ public class SignUpController {
     private TextField signUpName;
 
     @FXML
+    private TextField signUpPassport;
+    @FXML
+    private TextField signUpAddress;
+
+    @FXML
     private TextField signUpPassword;
     private Stage stage;
     private Scene scene;
-    Connection dbConnection;
 
     public void switchToSceneRegistered(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("registered.fxml"));
@@ -70,20 +62,25 @@ public class SignUpController {
     }
 
     @FXML
-    void initialize() throws IOException {
+    void initialize() {
         signUpButton.setOnAction(event -> {
             try {
                 if (signUpLastName.getText().isEmpty() || signUpLogin.getText().isEmpty() ||
-                        signUpName.getText().isEmpty() || signUpPassword.getText().isEmpty()) {
+                        signUpName.getText().isEmpty() || signUpPassword.getText().isEmpty() || signUpPassport.getText().isEmpty()
+                        || signUpAddress.getText().isEmpty()) {
                     Shake userLoginAnim = new Shake(signUpLogin);
                     Shake userPassAnim = new Shake(signUpPassword);
                     Shake userNameAnim = new Shake(signUpName);
                     Shake userLastNameAnim = new Shake(signUpLastName);
+                    Shake userPassportAnim = new Shake(signUpPassport);
+                    Shake userAddressAnim = new Shake(signUpAddress);
 
                     userLoginAnim.playAnim();
                     userPassAnim.playAnim();
                     userNameAnim.playAnim();
                     userLastNameAnim.playAnim();
+                    userPassportAnim.playAnim();
+                    userAddressAnim.playAnim();
                     return;
                 }
                 signUpNewUser();
@@ -97,14 +94,19 @@ public class SignUpController {
     private void signUpNewUser() throws SQLException, ClassNotFoundException {
         DateBaseHandler dateBaseHandler = new DateBaseHandler();
 
-        String firstName = signUpName.getText();
-        String lastName = signUpLastName.getText();
+        String name = signUpName.getText() + " " + signUpLastName.getText();
+        String passport = signUpPassport.getText();
+        String address = signUpAddress.getText();
+
         String userName = signUpLogin.getText();
         String password = signUpPassword.getText();
 
-        User user = new User(firstName, lastName, userName, password);
+        User user = new User(userName, password);
+        Client clients = new Client(name, passport, address);
 
         dateBaseHandler.signUpUser(user);
+        dateBaseHandler.addClients(clients);
+        dateBaseHandler.fetchClientId(name);
     }
 }
 

@@ -17,14 +17,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class magazinController {
-    @FXML
-    private Button buttonMagazin1;
-
-    @FXML
-    private Button buttonMagazin2;
-
-    @FXML
-    private Button buttonMagazin3;
 
     @FXML
     private TextField str1_1;

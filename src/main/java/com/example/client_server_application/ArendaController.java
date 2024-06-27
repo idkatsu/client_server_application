@@ -47,15 +47,6 @@ public class ArendaController {
         rents.setDate_receipt(value1);
         rents.setDate_return(value2);
 
-        Shop shop = new Shop();
-        rents.setShop_id(shop.getId_magazin());
-
-        Bicycles bicycles = new Bicycles();
-        rents.setBicycle_id(bicycles.getBicycles_id());
-
-        User user = new User();
-        rents.setClient_id(user.getUserName());
-
         DateBaseHandler dateBaseHandler = new DateBaseHandler();
         dateBaseHandler.addRent(rents);
         System.out.println("Готово!");
@@ -64,7 +55,4 @@ public class ArendaController {
     @FXML
     void initialize() {
     }
-
-
-
 }
