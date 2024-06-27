@@ -58,6 +58,7 @@ public class ArendaController {
 
         DateBaseHandler dateBaseHandler = new DateBaseHandler();
         dateBaseHandler.addRent(rents);
+        System.out.println("Готово!");
     }
 
     @FXML

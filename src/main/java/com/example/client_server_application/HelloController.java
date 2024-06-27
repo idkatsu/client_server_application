@@ -104,6 +104,7 @@ public class HelloController {
     }
 
     public void goSpisok(ActionEvent event) throws SQLException, ClassNotFoundException {
+
         DateBaseHandler dateBaseHandler = new DateBaseHandler();
         List<Model_bicycle> bicycles = dateBaseHandler.getBicycles();
 
@@ -126,25 +127,30 @@ public class HelloController {
             str3_3.setText(bicycles.get(2).getNumber_of_gears());
         }
 
-        if (event.getSource() == buttonArenda1) {
-            selectedModel = "1";
-        }
-
-        if (event.getSource() == buttonArenda2) {
-            selectedModel = "2";
-
-        }
-
-        if (event.getSource() == buttonArenda3) {
-            selectedModel = "3";
-
-        }
     }
 
 
     @FXML
     void initialize() {
 
+    }
+
+    @FXML
+    public void handleButtonArenda1(ActionEvent event) throws IOException {
+        SingletonBicycle.getInstance().setBicycleId(1);
+        switchToMagazin(event);
+    }
+
+    @FXML
+    public void handleButtonArenda2(ActionEvent event) throws IOException {
+        SingletonBicycle.getInstance().setBicycleId(2);
+        switchToMagazin(event);
+    }
+
+    @FXML
+    public void handleButtonArenda3(ActionEvent event) throws IOException {
+        SingletonBicycle.getInstance().setBicycleId(3);
+        switchToMagazin(event);
     }
 
     private boolean loginUser(String loginText, String passwordText) throws SQLException, ClassNotFoundException {

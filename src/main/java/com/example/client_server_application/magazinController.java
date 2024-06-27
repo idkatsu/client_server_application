@@ -18,13 +18,13 @@ import javafx.stage.Stage;
 
 public class magazinController {
     @FXML
-    private Button buttonArenda1;
+    private Button buttonMagazin1;
 
     @FXML
-    private Button buttonArenda2;
+    private Button buttonMagazin2;
 
     @FXML
-    private Button buttonArenda3;
+    private Button buttonMagazin3;
 
     @FXML
     private TextField str1_1;
@@ -65,7 +65,6 @@ public class magazinController {
     }
 
     public void goSpisok(ActionEvent event) throws SQLException, ClassNotFoundException {
-        Shop shop = null;
         DateBaseHandler dateBaseHandler = new DateBaseHandler();
         List<Shop> shops = dateBaseHandler.getMagazin();
 
@@ -84,17 +83,24 @@ public class magazinController {
             str3_2.setText(shops.get(2).getAdress());
         }
 
-        if (event.getSource() == buttonArenda1) {
-            shop.setId_magazin("1");
-        }
+    }
 
-        if (event.getSource() == buttonArenda2) {
-            shop.setId_magazin("2");
-        }
+    @FXML
+    public void handleButtonMagazin1(ActionEvent event) throws IOException {
+        SingletonShop.getInstance().setShopId(1);
+        goDate(event);
+    }
 
-        if (event.getSource() == buttonArenda3) {
-            shop.setId_magazin("3");
-        }
+    @FXML
+    public void handleButtonMagazin2(ActionEvent event) throws IOException {
+        SingletonShop.getInstance().setShopId(2);
+        goDate(event);
+    }
+
+    @FXML
+    public void handleButtonMagazin3(ActionEvent event) throws IOException {
+        SingletonShop.getInstance().setShopId(3);
+        goDate(event);
     }
 
     @FXML

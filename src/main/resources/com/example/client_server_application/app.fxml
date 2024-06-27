@@ -61,12 +61,13 @@
                   <Font name="Arial" size="14.0" />
                </font>
             </Label>
-            <Button fx:id="buttonArenda1" layoutX="514.0" layoutY="98.0" mnemonicParsing="false" onAction="#switchToMagazin" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #32CD32;" text="Арендовать" textFill="WHITE">
+
+            <Button fx:id="buttonArenda1" layoutX="514.0" layoutY="98.0" mnemonicParsing="false" onAction="#handleButtonArenda1" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #32CD32;" text="Арендовать" textFill="WHITE">
                <font>
                   <Font name="Arial" size="10.0" />
                </font>
             </Button>
-            <Button fx:id="buttonArenda2" layoutX="514.0" layoutY="122.0" mnemonicParsing="false" onAction="#switchToMagazin" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #32CD32;" text="Арендовать" textFill="WHITE">
+            <Button fx:id="buttonArenda2" layoutX="514.0" layoutY="122.0" mnemonicParsing="false" onAction="#handleButtonArenda2" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #32CD32;" text="Арендовать" textFill="WHITE">
                <font>
                   <Font name="Arial" size="10.0" />
                </font>
@@ -74,7 +75,7 @@
             <TextField fx:id="str3_1" editable="false" layoutX="69.0" layoutY="147.0" />
             <TextField fx:id="str3_2" editable="false" layoutX="218.0" layoutY="147.0" />
             <TextField fx:id="str3_3" editable="false" layoutX="366.0" layoutY="147.0" />
-            <Button fx:id="buttonArenda3" layoutX="514.0" layoutY="146.0" mnemonicParsing="false" onAction="#switchToMagazin" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #32CD32;" text="Арендовать" textFill="WHITE">
+            <Button fx:id="buttonArenda3" layoutX="514.0" layoutY="146.0" mnemonicParsing="false" onAction="#handleButtonArenda3" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #32CD32;" text="Арендовать" textFill="WHITE">
                <font>
                   <Font name="Arial" size="10.0" />
                </font>

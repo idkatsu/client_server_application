@@ -49,19 +49,19 @@
                         <Font name="Arial" size="14.0" />
                     </font>
                 </Label>
-                <Button fx:id="buttonMagazin1" layoutX="459.0" layoutY="99.0" mnemonicParsing="false" onAction="#goDate" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #32CD32;" text="Выбрать" textFill="WHITE">
+                <Button fx:id="buttonMagazin1" layoutX="459.0" layoutY="99.0" mnemonicParsing="false" onAction="#handleButtonMagazin1" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #32CD32;" text="Выбрать" textFill="WHITE">
                     <font>
                         <Font name="Arial" size="10.0" />
                     </font>
                 </Button>
-                <Button fx:id="buttonMagazin2" layoutX="459.0" layoutY="123.0" mnemonicParsing="false" onAction="#goDate" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #32CD32;" text="Выбрать" textFill="WHITE">
+                <Button fx:id="buttonMagazin2" layoutX="459.0" layoutY="123.0" mnemonicParsing="false" onAction="#handleButtonMagazin2" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #32CD32;" text="Выбрать" textFill="WHITE">
                     <font>
                         <Font name="Arial" size="10.0" />
                     </font>
                 </Button>
             <TextField fx:id="str3_1" editable="false" layoutX="161.0" layoutY="148.0" />
             <TextField fx:id="str3_2" editable="false" layoutX="310.0" layoutY="148.0" />
-            <Button fx:id="buttonMagazin3" layoutX="459.0" layoutY="148.0" mnemonicParsing="false" onAction="#goDate" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #32CD32;" text="Выбрать" textFill="WHITE">
+            <Button fx:id="buttonMagazin3" layoutX="459.0" layoutY="148.0" mnemonicParsing="false" onAction="#handleButtonMagazin3" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #32CD32;" text="Выбрать" textFill="WHITE">
                <font>
                   <Font name="Arial" size="10.0" />
                </font>

@@ -95,30 +95,10 @@ public class DateBaseHandler extends Configs {
         String insert = "INSERT INTO rents (client_id, bicycle_id, shop_id, date_receipt, date_return) VALUES (?,?,?,?,?)";
         PreparedStatement preparedStatement = getDbConnection().prepareStatement(insert);
         preparedStatement.setString(1, rent.getClient_id());
-        preparedStatement.setString(2, rent.getBicycle_id());
-        preparedStatement.setString(3, rent.getShop_id());
+        preparedStatement.setInt(2, SingletonBicycle.getInstance().getBicycleId());
+        preparedStatement.setInt(3, SingletonShop.getInstance().getShopId());
         preparedStatement.setString(4, rent.getDate_receipt());
         preparedStatement.setString(5, rent.getDate_return());
         preparedStatement.executeUpdate();
-    }
-
-    public void addIdClients(Rent rent) throws SQLException, ClassNotFoundException {
-        String insert = "INSERT INTO rents (client_id) VALUES (?)";
-        PreparedStatement preparedStatement = getDbConnection().prepareStatement(insert);
-        preparedStatement.setString(1, rent.getClient_id());
-        preparedStatement.executeUpdate();
-    }
-
-    public int getUserIdByLogin(String login) throws SQLException, ClassNotFoundException {
-        String query = "SELECT idUsers FROM users WHERE iserName = ?";
-        PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
-        preparedStatement.setString(1, login);
-        ResultSet resultSet = preparedStatement.executeQuery();
-
-        if (resultSet.next()) {
-            return resultSet.getInt("idUsers");
-        }
-
-        return -1;
     }
 }
