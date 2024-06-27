@@ -4,15 +4,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
+import java.util.List;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -21,43 +21,36 @@ import javafx.stage.Stage;
 
 public class HelloController {
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private Button buttonRegister;
-    @FXML
-    private Button buttonBack;
-
-    @FXML
     private TextField login_field;
-
     @FXML
     private PasswordField password_field;
-    @FXML
-    private TextField signUpLastName;
-
-    @FXML
-    private TextField signUpLogin;
-
-    @FXML
-    private TextField signUpName;
-
-    @FXML
-    private TextField signUpPassword;
-
-    @FXML
-    private Button buttonEnter;
-
-    @FXML
-    private Button buttonEnter2;
     private Stage stage;
     private Scene scene;
-    private FXMLLoader fxmlLoader;
-    private Parent root;
-
+    @FXML
+    private TextField str1_1;
+    @FXML
+    private TextField str1_2;
+    @FXML
+    private TextField str1_3;
+    @FXML
+    private TextField str2_1;
+    @FXML
+    private TextField str2_2;
+    @FXML
+    private TextField str2_3;
+    @FXML
+    private TextField str3_1;
+    @FXML
+    private TextField str3_2;
+    @FXML
+    private TextField str3_3;
+    @FXML
+    private Button buttonArenda1;
+    @FXML
+    private Button buttonArenda2;
+    @FXML
+    private Button buttonArenda3;
+    protected String selectedModel;
 
     public void switchToSceneSignUp(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("signUp.fxml"));
@@ -100,6 +93,52 @@ public class HelloController {
             stage.show();
         }
 
+    }
+
+    public void switchToMagazin(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("magazin.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void goSpisok(ActionEvent event) throws SQLException, ClassNotFoundException {
+        DateBaseHandler dateBaseHandler = new DateBaseHandler();
+        List<Model_bicycle> bicycles = dateBaseHandler.getBicycles();
+
+        if (!bicycles.isEmpty()) {
+            str1_1.setText(bicycles.get(0).getName());
+            str1_2.setText(bicycles.get(0).getType());
+            str1_3.setText(bicycles.get(0).getNumber_of_gears());
+
+        }
+
+        if (!bicycles.isEmpty()) {
+            str2_1.setText(bicycles.get(1).getName());
+            str2_2.setText(bicycles.get(1).getType());
+            str2_3.setText(bicycles.get(1).getNumber_of_gears());
+        }
+
+        if (!bicycles.isEmpty()) {
+            str3_1.setText(bicycles.get(2).getName());
+            str3_2.setText(bicycles.get(2).getType());
+            str3_3.setText(bicycles.get(2).getNumber_of_gears());
+        }
+
+        if (event.getSource() == buttonArenda1) {
+            selectedModel = "1";
+        }
+
+        if (event.getSource() == buttonArenda2) {
+            selectedModel = "2";
+
+        }
+
+        if (event.getSource() == buttonArenda3) {
+            selectedModel = "3";
+
+        }
     }
 
 
