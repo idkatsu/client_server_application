@@ -44,10 +44,12 @@ public class ArendaController {
         String value1 = str1_1.getText();
         String value2 = str1_2.getText();
         Rent rents = new Rent();
+
         rents.setDate_receipt(value1);
         rents.setDate_return(value2);
 
         DateBaseHandler dateBaseHandler = new DateBaseHandler();
+        rents.setClient_id(dateBaseHandler.getClientIdByUsername(value1));
         dateBaseHandler.addRent(rents);
         System.out.println("Готово!");
     }

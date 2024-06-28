@@ -1,7 +1,7 @@
 package com.example.client_server_application;
 
 public class Rent {
-    public Rent(String client_id, String bicycle_id, String shop_id, String date_receipt, String date_return) {
+    public Rent(int client_id, String bicycle_id, String shop_id, String date_receipt, String date_return) {
         this.client_id = client_id;
         this.bicycle_id = bicycle_id;
         this.shop_id = shop_id;
@@ -12,7 +12,7 @@ public class Rent {
 
     }
 
-    public void setClient_id(String client_id) {
+    public void setClient_id(int client_id) {
         this.client_id = client_id;
     }
 
@@ -32,7 +32,7 @@ public class Rent {
         this.date_return = date_return;
     }
 
-    public String getClient_id() {
+    public int getClient_id() {
         return client_id;
     }
 
@@ -52,7 +52,7 @@ public class Rent {
         return date_return;
     }
 
-    private String client_id;
+    private int client_id;
     private String bicycle_id;
     private String shop_id;
     private String date_receipt;

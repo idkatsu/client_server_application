@@ -102,11 +102,11 @@ public class SignUpController {
         String password = signUpPassword.getText();
 
         User user = new User(userName, password);
-        Client clients = new Client(name, passport, address);
+        Client client = new Client(name, passport, address);
 
-        dateBaseHandler.signUpUser(user);
-        dateBaseHandler.addClients(clients);
+        dateBaseHandler.addClients(client);
         dateBaseHandler.fetchClientId(name);
+        dateBaseHandler.signUpUser(user, client);
     }
 }
 

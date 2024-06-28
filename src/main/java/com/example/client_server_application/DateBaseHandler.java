@@ -17,12 +17,13 @@ public class DateBaseHandler {
     }
 
     // sql запрос
-    public void signUpUser(User user)
+    public void signUpUser(User user, Client client)
             throws SQLException, ClassNotFoundException {
-        String insert = "INSERT INTO users (userName, password) VALUES (?,?)";
+        String insert = "INSERT INTO users (id_client, userName, password) VALUES (?,?,?)";
         PreparedStatement preparedStatement = getDbConnection().prepareStatement(insert);
-        preparedStatement.setString(1, user.getUserName());
-        preparedStatement.setString(2, user.getPassword());
+        preparedStatement.setInt(1, findClientIdByName(client.getName()));
+        preparedStatement.setString(2, user.getUserName());
+        preparedStatement.setString(3, user.getPassword());
         preparedStatement.executeUpdate();
     }
 
@@ -33,6 +34,31 @@ public class DateBaseHandler {
         preparedStatement.setString(2, client.passport);
         preparedStatement.setString(3, client.address);
         preparedStatement.executeUpdate();
+    }
+
+    public int findClientIdByName(String clientName) throws SQLException, ClassNotFoundException {
+        String select = "SELECT id FROM clients WHERE name = ?";
+        PreparedStatement preparedStatement = getDbConnection().prepareStatement(select);
+        preparedStatement.setString(1, clientName);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()) {
+            return resultSet.getInt("id");
+        } else {
+            return -1;
+        }
+    }
+
+    public void addUser(String clientName) throws SQLException, ClassNotFoundException {
+        int clientId = findClientIdByName(clientName);
+
+        if (clientId != -1) {
+            String insert = "INSERT INTO users (id_client) VALUES (?)";
+            PreparedStatement preparedStatement = getDbConnection().prepareStatement(insert);
+            preparedStatement.setInt(1, clientId);
+            preparedStatement.executeUpdate();
+        } else {
+        }
     }
 
     public void fetchClientId(String clientName) throws SQLException, ClassNotFoundException {
@@ -123,5 +149,18 @@ public class DateBaseHandler {
         preparedStatement.setString(4, rent.getDate_receipt());
         preparedStatement.setString(5, rent.getDate_return());
         preparedStatement.executeUpdate();
+    }
+
+    public int getClientIdByUsername(String username) throws SQLException, ClassNotFoundException {
+        String select = "SELECT id_client FROM users WHERE userName=?";
+        PreparedStatement preparedStatement = getDbConnection().prepareStatement(select);
+        preparedStatement.setString(1, username);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()) {
+            return resultSet.getInt("id_client");
+        } else {
+            return 0;
+        }
     }
 }

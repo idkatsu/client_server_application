@@ -1,19 +1,14 @@
 package com.example.client_server_application;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -152,7 +147,7 @@ public class HelloController {
         user.setUserName(loginText);
         user.setPassword(passwordText);
         ResultSet result = dateBaseHandler.getUser(user);
-
+        SingletonClient.getInstance().setClientId(dateBaseHandler.getClientIdByUsername(loginText));
         int count = 0;
         while (result.next()) count++;
         if (count >= 1) {
